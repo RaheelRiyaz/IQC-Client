@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { HttpStatusCode } from "axios";
 import { BASE_SERVICE } from "../../services/baseService";
+import Loader from "../../shared/components/Loader";
 function Students() {
   const [students, setStudents] = useState([]);
   const [isLoading, setisLoading] = useState(true);
@@ -21,9 +22,12 @@ function Students() {
       })
       .finally(() => setisLoading(false));
   }, []);
-  
-  if(error) return <p className="text-red-300">{error}</p>
-  if (isLoading) return <p>Loading...</p>;
+
+  if (error) return <p className="text-red-300">{error}</p>;
+  if (isLoading)
+    return (
+        <Loader />
+    );
   else return <div>Students work</div>;
 }
 

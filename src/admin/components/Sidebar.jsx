@@ -22,6 +22,14 @@ function Sidebar() {
       name: "Faculty",
       navigateTo: "faculty",
     },
+    {
+      name: "Groups",
+      navigateTo: "groups",
+    },
+    {
+      name: "Subjects",
+      navigateTo: "subjects",
+    },
   ];
   return (
     <>

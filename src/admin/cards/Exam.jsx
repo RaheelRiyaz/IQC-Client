@@ -3,7 +3,7 @@ import Header from "../components/Header";
 function Exam({ exam }) {
   return (
     <>
-    <Header heading="Group Exams" />
+      <Header heading="Group Exams" />
       <div className="max-w-md p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
           <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -25,6 +25,24 @@ function Exam({ exam }) {
         <h1 className="text-xl font-semibold text-gray-500">
           Total Questions :{exam?.totalNoOfQuestions}
         </h1>
+        <div>
+          Exam Status :
+          <strong
+            className={
+              exam?.examStatus === 1
+                ? "text-green-500"
+                : exam?.examStatus === 3
+                ? "text-red-400"
+                : "text-blue-500"
+            }
+          >
+            {exam?.examStatus == 1
+              ? "Conducted"
+              : exam?.examStatus === 3
+              ? "Postponed"
+              : "Yet to be Conducted"}
+          </strong>
+        </div>
         <a className="inline-flex font-medium items-center text-blue-600 hover:underline">
           See our guideline
           <svg

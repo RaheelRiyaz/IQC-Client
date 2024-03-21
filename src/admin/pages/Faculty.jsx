@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { HttpStatusCode } from "axios";
 import Header from "../components/Header";
 import { BASE_SERVICE } from "../../services/baseService";
+import Loader from "../../shared/components/Loader";
 
 function Faculty() {
   const [faculty, setFaculty] = useState([]);
@@ -23,7 +24,7 @@ function Faculty() {
   }, []);
 
   if (error) return <p className="text-red-300">{error}</p>;
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <Loader />;
   else
     return (
       <div className="relative overflow-x-auto">
