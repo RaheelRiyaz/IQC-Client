@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useRef } from "react";
 import { BASE_SERVICE } from "../../../services/baseService";
 import { useNavigate } from "react-router-dom";
-
+import { SelectEL } from "../../components/GroupSelect";
 function AddNotification() {
   const {
     register,
@@ -17,12 +17,18 @@ function AddNotification() {
 
   const form = useRef(new FormData());
   const navigateTo = useNavigate();
+
   function handleFile(e) {
     const file = e.target.files[0];
     form.current.append("file", file);
   }
 
+  function handleGroup(value) {
+    console.log(value);
+  }
+
   function handleForm(data) {
+    console.log(data);
     for (const key in data) {
       form.current.append(key, data[key]);
       console.log(key, data[key]);
@@ -54,11 +60,7 @@ function AddNotification() {
             {errors.title && (
               <p className="text-red-500">{errors.title.message}</p>
             )}
-            {/* <Input
-              placeholder="Title"
-              classes="md:w-[400px]"
-              {...register("title")}
-            /> */}
+            <SelectEL handler={handleGroup} {...register("groupId")} />
           </div>
 
           <div className="flex justify-start gap-3 items-center flex-wrap w-full">

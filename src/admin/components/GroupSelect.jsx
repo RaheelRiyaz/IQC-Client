@@ -1,19 +1,14 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 // import { memo } from "react";
 
-import { HttpStatusCode } from "axios";
-import { memo, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { forwardRef, memo, useEffect, useState } from "react";
 import { BASE_SERVICE } from "../../services/baseService";
-import { setFilterNotification } from "../../store/Store";
+import { HttpStatusCode } from "axios";
 
-function Select() {
+function GroupSelect({ handler }, ref) {
+  const [selectedVal, setSelectedVal] = useState(null);
   const [options, setOptions] = useState([]);
-  const {
-    notificationFilter: { groupId },
-  } = useSelector((store) => store.notifications);
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     BASE_SERVICE.Fetch("groups")
@@ -27,28 +22,23 @@ function Select() {
       });
   }, []);
 
-  function handleChange(value) {
-    dispatch(
-      setFilterNotification({
-        pageNo: 1,
-        dateTime: null,
-        groupId: value === "" ? null : value,
-      })
-    );
+  function handleOnChange(groupId) {
+    setSelectedVal(groupId);
+    handler(groupId);
   }
 
   return (
     <select
-      name=""
-      id=""
-      value={groupId}
-      onChange={(e) => handleChange(e.target.value)}
+      ref={ref}
+      className="border border-gray-300 rounded-lg p-2 outline-none cursor-pointer"
+      value={selectedVal}
+      onChange={handler ? (e) => handleOnChange(e.target.value) : null}
     >
       <option selected value={null} disabled>
         Select Group
       </option>
       <option value="">None</option>
-      {options.map((_, i) => {
+      {options && options.map((_, i) => {
         return (
           <option value={_.id} key={i}>
             {_.name} {_.batch}
@@ -59,4 +49,4 @@ function Select() {
   );
 }
 
-export const SelectEL = memo(Select);
+export const SelectEL = memo(forwardRef(GroupSelect));

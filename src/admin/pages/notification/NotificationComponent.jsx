@@ -1,11 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
 import Header from "../../components/Header";
-import { SelectEL } from "../../components/Select";
+import { SelectEL } from "../../components/GroupSelect";
 import { setFilterNotification } from "../../../store/Store";
 import Notifications from "./Notifications";
 import Pagination from "../../../shared/components/Pagination";
 import DatePicker from "../../../shared/components/DatePicker";
 import NavigateBtn from "../../../shared/components/NavigateBtn";
+
 
 function NotificationComponent() {
   const { notificationFilter } = useSelector((store) => store.notifications);
@@ -35,15 +36,15 @@ function NotificationComponent() {
     }
   }
 
-  function handleFilterGroup(value) {
-    console.log(value);
-    console.log(notificationFilter);
-    dispatch(
-      setFilterNotification({
-        pageNo: 1,
-      })
-    );
-  }
+  // function handleFilterGroup(value) {
+  //   console.log(value);
+  //   console.log(notificationFilter);
+  //   dispatch(
+  //     setFilterNotification({
+  //       pageNo: 1,
+  //     })
+  //   );
+  // }
 
   function handleDateFilter(date) {
     if (!date) {
@@ -63,6 +64,16 @@ function NotificationComponent() {
     );
   }
 
+  function handleChange(value) {
+    dispatch(
+      setFilterNotification({
+        pageNo: 1,
+        dateTime: null,
+        groupId: value === "" ? null : value,
+      })
+    );
+  }
+
   return (
     <div>
       <Header heading="Our Notifications" />
@@ -70,7 +81,7 @@ function NotificationComponent() {
 
       <div className="flex justify-between items-center gap-3 m-2 flex-wrap">
         <SelectEL
-          handler={handleFilterGroup}
+          handler={handleChange}
           options={[
             {
               name: "Select a group",

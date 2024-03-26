@@ -5,8 +5,9 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { AdminRouterModule } from "./admin/AdminRouting";
 import { Provider } from "react-redux";
 import { store } from "./store/Store";
+import { UserRouterModule } from "./user/UserRouting";
 
-const routes = createBrowserRouter([AdminRouterModule]);
+const routes = createBrowserRouter([AdminRouterModule, UserRouterModule]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

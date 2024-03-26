@@ -64,11 +64,13 @@ function Notifications() {
                   >
                     <th
                       scope="row"
-                      className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                      className="px-6 py-4 font-medium text-gray-900 whitespace-pre-wrap dark:text-white"
                     >
                       {_.title}
                     </th>
-                    <td className="px-6 py-4">{_.date}</td>
+                    <td className="px-6 py-4">
+                      {new Date(_.date).toLocaleDateString("en-GB")}
+                    </td>
                     <td className="px-6 py-4">
                       {_.group ? _.group : "Not mentioned"}
                     </td>

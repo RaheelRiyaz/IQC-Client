@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { BASE_SERVICE } from "../../../services/baseService";
 import Loader from "../../../shared/components/Loader";
 import Header from "../../components/Header";
+import  NavigateBtn  from "../../../shared/components/NavigateBtn";
+
 function Groups() {
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,6 +50,7 @@ function Groups() {
   return (
     <>
       <Header heading="Our groups" />
+      <NavigateBtn placeholder="Add Group +" route="add"/>
       <div className="relative overflow-x-auto">
         <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

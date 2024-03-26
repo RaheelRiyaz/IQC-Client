@@ -4,7 +4,7 @@ const slice = createSlice({
   initialState: {
     notificationFilter: {
       pageNo: 1,
-      pageSize: 3,
+      pageSize: 10,
       dateTime: null,
       groupId: null,
     },
